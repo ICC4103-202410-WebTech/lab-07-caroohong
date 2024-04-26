@@ -113,3 +113,20 @@ post5 = user5.posts.create(title: 'Post 5',
 post10 = user5.posts.create(title: 'Post 10',
                           content: 'Post 10 Content')
                           post10.tags << tag2
+
+
+# EXTRA: PARENT-CHILD POSTS
+#Parent Posts
+parent_post1 = user1.posts.create(title: "Parent Post 1", content: "Content of Parent Post 1")
+                          parent_post1.tags << tag1
+                          parent_post1.tags << tag3
+parent_post2 = user2.posts.create(title: "Parent Post 2", content: "Content of Parent Post 2")
+                          parent_post2.tags << tag2
+                          parent_post2.tags << tag4
+#Create Child Posts
+child_post1 = user2.posts.create(title: "Child Post 1", content: "Content of Child Post 1", parent_post_id: parent_post1.id)
+                          child_post1.tags << tag5
+child_post2 = user3.posts.create(title: "Child Post 2", content: "Content of Child Post 2", parent_post_id: parent_post1.id)
+                          child_post2.tags << tag1
+child_post3 = user4.posts.create(title: "Child Post 3", content: "Content of Child Post 3", parent_post_id: parent_post2.id)
+                          child_post3.tags << tag5
